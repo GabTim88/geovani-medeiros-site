@@ -3,9 +3,28 @@
  * Usado em metadata, JSON-LD, sitemap, footer e CTAs.
  */
 
+/** Domínio definitivo do cliente. */
+const DOMINIO = "https://geovanimedeiros.com.br";
+
+/**
+ * URL base do site.
+ *
+ * Em produção na Vercel usa o domínio definitivo; em preview usa a própria
+ * URL do deploy, para que canonical e Open Graph apontem para a página que a
+ * pessoa está de fato vendo, e não para um domínio que pode ainda nem existir.
+ */
+const urlDoDeploy = process.env.VERCEL_URL
+  ? `https://${process.env.VERCEL_URL}`
+  : null;
+
+export const siteUrl =
+  process.env.NEXT_PUBLIC_SITE_URL ??
+  (process.env.VERCEL_ENV === "production" ? DOMINIO : urlDoDeploy) ??
+  DOMINIO;
+
 export const site = {
   name: "Geovani Medeiros",
-  url: "https://geovanimedeiros.com.br",
+  url: siteUrl,
   locale: "pt_BR",
   city: "Barbacena",
   state: "MG",
