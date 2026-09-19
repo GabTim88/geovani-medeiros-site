@@ -17,7 +17,7 @@ export default function About() {
                 src="/images/sobre.webp"
                 alt="Geovani Medeiros sentado em uma banqueta, de jaqueta de couro, segurando seu violão em retrato de estúdio"
                 fill
-                sizes="(max-width: 768px) 100vw, 45vw"
+                sizes="(max-width: 768px) 100vw, (max-width: 1152px) 45vw, 512px"
                 className="object-cover"
               />
             </div>

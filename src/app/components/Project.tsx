@@ -40,7 +40,7 @@ function ProjectBlock({
             src={image}
             alt={alt}
             fill
-            sizes="(max-width: 768px) 100vw, 45vw"
+            sizes="(max-width: 768px) 100vw, (max-width: 1152px) 45vw, 512px"
             className="object-cover"
           />
         </div>
