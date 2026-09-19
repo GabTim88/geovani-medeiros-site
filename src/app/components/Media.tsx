@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useReveal } from "@/lib/useReveal";
 import { site } from "@/lib/site";
 
@@ -9,18 +10,32 @@ export default function Media() {
   const youtubeRef = useReveal(0.1);
 
   return (
-    <section id="midia" className="py-24 md:py-32 bg-terra-dark">
-      <div className="max-w-6xl mx-auto px-6">
+    <section
+      id="midia"
+      className="relative overflow-hidden py-24 md:py-32 bg-terra-dark"
+    >
+      <Image
+        src="/images/midias.jpg"
+        alt=""
+        aria-hidden="true"
+        fill
+        sizes="100vw"
+        className="object-cover"
+      />
+      {/* Véu a 88%: abaixo disso o kicker dourado reprova AA sobre os pontos
+          mais claros da foto. A imagem fica como textura, não como assunto. */}
+      <div className="absolute inset-0 bg-terra-dark/[0.88]" />
+
+      <div className="relative z-10 max-w-6xl mx-auto px-6">
         <div ref={headerRef} className="reveal text-center mb-16">
           <p className="text-terra-gold tracking-[0.2em] uppercase text-xs mb-4">
-            Mídia
+            Ouça agora
           </p>
           <h2 className="font-serif text-terra-cream text-3xl md:text-5xl mb-6">
-            Ouça, assista e{" "}
-            <span className="text-terra-gold italic">acompanhe</span>
+            Ouça, assista e acompanhe
           </h2>
           <div className="editorial-line mx-auto" />
-          <p className="text-terra-cream/70 mt-6 max-w-xl mx-auto leading-relaxed">
+          <p className="text-terra-cream/80 mt-6 max-w-xl mx-auto leading-relaxed">
             O som ao vivo e os bastidores da gravação em Tiradentes.
           </p>
         </div>

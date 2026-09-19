@@ -22,8 +22,7 @@ export default function Faq() {
             id="duvidas-titulo"
             className="font-serif text-terra-dark text-3xl md:text-5xl mb-6"
           >
-            Antes de{" "}
-            <span className="text-terra-burn italic">chamar no WhatsApp</span>
+            Antes de chamar no WhatsApp
           </h2>
           <div className="editorial-line mx-auto" />
         </div>

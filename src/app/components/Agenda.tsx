@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useReveal } from "@/lib/useReveal";
 import { site, whatsappLink } from "@/lib/site";
 
@@ -19,7 +20,19 @@ export default function Agenda() {
       aria-labelledby="agenda-titulo"
       className="relative overflow-hidden bg-terra-dark border-t border-terra-cream/10 py-20 md:py-28 px-6 md:px-16"
     >
-      <div className="max-w-[1400px] mx-auto grid lg:grid-cols-[1fr_1.1fr] gap-12 lg:gap-20 items-start">
+      <Image
+        src="/images/agenda.jpg"
+        alt=""
+        aria-hidden="true"
+        fill
+        sizes="100vw"
+        className="object-cover"
+      />
+      {/* Véu a 88%: abaixo disso o kicker dourado reprova AA sobre os pontos
+          mais claros da foto. A imagem fica como textura, não como assunto. */}
+      <div className="absolute inset-0 bg-terra-dark/[0.88]" />
+
+      <div className="relative z-10 max-w-[1400px] mx-auto grid lg:grid-cols-[1fr_1.1fr] gap-12 lg:gap-20 items-start">
         {/* Texto lateral */}
         <div ref={copyRef} className="reveal">
           <p className="text-terra-gold tracking-[0.3em] uppercase text-[0.65rem] mb-3">
@@ -35,7 +48,7 @@ export default function Agenda() {
           </h2>
           <div className="editorial-line mb-8" />
 
-          <div className="space-y-4 text-terra-cream/75 leading-relaxed max-w-md">
+          <div className="space-y-4 text-terra-cream/85 leading-relaxed max-w-md">
             <p>
               Consulte as datas já comprometidas e veja se o seu dia está livre.
               A agenda é a mesma que o Geovani usa no dia a dia, então o que
@@ -85,7 +98,7 @@ export default function Agenda() {
                 <span className="w-2.5 h-2.5 rounded-full bg-terra-cream/40" />
               </div>
               <p className="text-terra-cream/70 tracking-[0.15em] uppercase text-[0.65rem]">
-                Agenda &mdash; Geovani Medeiros
+                Próximos shows
               </p>
               <div className="w-[38px]" aria-hidden="true" />
             </div>
@@ -101,7 +114,7 @@ export default function Agenda() {
           </div>
 
           <p className="mt-4 text-terra-cream/60 text-xs text-center">
-            Horário de Brasília. Datas sujeitas a confirmação.
+            Horário de Brasília. Uma data marcada aqui pode abrir — pergunte.
           </p>
         </div>
       </div>

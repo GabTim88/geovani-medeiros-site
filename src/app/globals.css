@@ -75,6 +75,11 @@ body {
   background-color: var(--terra-burn);
 }
 
+/* Sobre o vinho #371216 o terracota some (2.07:1); o dourado mantém 9.22:1. */
+.editorial-line--gold {
+  background-color: var(--terra-gold);
+}
+
 /*
  * Sem JS o IntersectionObserver nunca roda e a página inteira ficaria em
  * opacity: 0. O <noscript> no layout entrega o conteúdo já revelado.

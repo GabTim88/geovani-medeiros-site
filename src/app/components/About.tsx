@@ -38,22 +38,14 @@ export default function About() {
             <div className="editorial-line mb-8" />
             <div className="space-y-5 text-terra-dark/75 leading-relaxed">
               <p>
-                Natural de Barbacena, Minas Gerais, Geovani Medeiros está no cenário
-                artístico da região de Campos das Vertentes desde 2014 &mdash; mais de
-                dez anos tocando em casamentos, bares, eventos corporativos e festivais
-                por todo o estado.
+                Sozinho, Geovani constrói a sonoridade de uma banda inteira &mdash; e lê
+                o público com o carisma de quem sabe exatamente quando acelerar e quando
+                deixar a música respirar.
               </p>
               <p>
-                Seu repertório é eclético e os arranjos são autorais, mesclando gaita e
-                violão. Sozinho, ele constrói a sonoridade de uma banda inteira &mdash; e
-                lê o público com o carisma de quem sabe exatamente quando acelerar e
-                quando deixar a música respirar.
-              </p>
-              <p>
-                Em 2017 lançou o álbum <em>&ldquo;Pra Começar&rdquo;</em>: mais de cinco
-                mil cópias distribuídas em uma produção 100% independente. Foi o marco
-                inicial de uma carreira que agora abre um novo capítulo com o audiovisual
-                <em>&ldquo;Um Entardecer em Tiradentes&rdquo;</em>.
+                São mais de dez anos de estrada: casamento, bar, evento corporativo,
+                festival. E um álbum, <em>&ldquo;Pra Começar&rdquo;</em>, de 2017, com
+                mais de cinco mil cópias distribuídas em produção 100% independente.
               </p>
             </div>
 

@@ -58,8 +58,7 @@ export default function Gallery() {
             Galeria
           </p>
           <h2 className="font-serif text-terra-dark text-3xl md:text-5xl mb-6">
-            Momentos em{" "}
-            <span className="text-terra-burn italic">imagens</span>
+            Momentos em imagens
           </h2>
           <div className="editorial-line mx-auto" />
           <p className="text-terra-dark/75 mt-6 max-w-xl mx-auto leading-relaxed">

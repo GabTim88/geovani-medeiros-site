@@ -13,6 +13,7 @@ const config: Config = {
           burn: "#853A14",
           cream: "#FBFAEF",
           gold: "#D5BF86",
+          wine: "#371216",
         },
       },
       fontFamily: {

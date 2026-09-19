@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import ShowTypes from "./ShowTypes";
 import HireTestimonials from "./HireTestimonials";
 import HireCTA from "./HireCTA";
@@ -51,26 +52,36 @@ export default function ContratacaoPage() {
       />
 
       {/* Hero da página */}
-      <section className="pt-32 pb-20 md:pt-40 md:pb-28 bg-terra-dark relative overflow-hidden">
-        <div className="absolute inset-0 opacity-10">
-          <div
-            className="absolute inset-0"
-            style={{
-              backgroundImage:
-                "radial-gradient(ellipse at 30% 60%, rgba(133,58,20,0.4) 0%, transparent 60%)",
-            }}
-          />
-        </div>
+      <section className="relative flex items-center min-h-[78svh] md:min-h-[86svh] pt-36 pb-24 md:pt-44 md:pb-32 bg-terra-dark overflow-hidden">
+        <Image
+          src="/images/projeto-futuro.webp"
+          alt=""
+          aria-hidden="true"
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover object-center"
+        />
+        {/* Véu: sem ele o texto creme não alcança contraste AA sobre a foto */}
+        <div className="absolute inset-0 bg-terra-dark/85" />
+        <div
+          className="absolute inset-0 opacity-60"
+          style={{
+            backgroundImage:
+              "radial-gradient(ellipse at 30% 60%, rgba(133,58,20,0.45) 0%, transparent 60%)",
+          }}
+        />
         <div className="relative z-10 max-w-4xl mx-auto px-6 text-center">
           <p className="text-terra-gold tracking-[0.3em] uppercase text-xs mb-6">
             Contratação
           </p>
           <h1 className="font-serif text-terra-cream text-4xl md:text-6xl mb-6 leading-tight">
-            A trilha sonora do{" "}
-            <span className="text-terra-gold italic">seu grande dia</span>
+            A trilha sonora
+            <br />
+            <span className="text-terra-gold italic">do seu grande dia</span>
           </h1>
           <div className="w-16 h-[2px] bg-terra-burn mx-auto mb-8" />
-          <p className="text-terra-cream/70 text-lg max-w-2xl mx-auto leading-relaxed">
+          <p className="text-terra-cream/85 text-lg max-w-2xl mx-auto leading-relaxed">
             Cada evento tem seu ritmo. Geovani ajusta repertório, formação e
             energia para acertar o tom do começo ao fim &mdash; do silêncio de
             uma cerimônia à última música da pista.

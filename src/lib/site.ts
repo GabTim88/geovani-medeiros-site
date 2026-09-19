@@ -14,7 +14,7 @@ export const site = {
   tagline: "Música brasileira ao vivo para casamentos e eventos",
   whatsapp: "553284588496",
   social: {
-    instagram: "https://instagram.com/geovanimedeiros",
+    instagram: "https://www.instagram.com/geovanimedeirosoficial",
     youtube: "https://youtube.com/@geovanimedeirosoficial",
     spotify: "https://open.spotify.com/user/21tii3nlto6nvbamkdxfjiu5i",
   },

@@ -16,8 +16,7 @@ export default function Testimonials() {
             Depoimentos
           </p>
           <h2 className="font-serif text-terra-dark text-3xl md:text-5xl mb-6">
-            Quem contratou,{" "}
-            <span className="text-terra-burn italic">conta por quê</span>
+            Quem contratou, conta por quê
           </h2>
           <div className="editorial-line mx-auto" />
           <p className="text-terra-dark/75 mt-6 max-w-xl mx-auto leading-relaxed">

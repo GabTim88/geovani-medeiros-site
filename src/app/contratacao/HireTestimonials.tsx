@@ -16,8 +16,7 @@ export default function HireTestimonials() {
             Quem já contratou
           </p>
           <h2 className="font-serif text-terra-cream text-3xl md:text-5xl mb-6">
-            Experiências que{" "}
-            <span className="text-terra-gold italic">falam por si</span>
+            Experiências que falam por si
           </h2>
           <div className="editorial-line mx-auto" />
           <p className="text-terra-cream/70 mt-6 max-w-xl mx-auto leading-relaxed">

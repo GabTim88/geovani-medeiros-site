@@ -54,7 +54,7 @@ function ProjectBlock({
         <h3 className="font-serif text-terra-cream text-2xl md:text-3xl mb-4 leading-snug">
           {title}
         </h3>
-        <div className="w-10 h-[2px] bg-terra-burn mb-6" />
+        <div className="w-10 h-[2px] bg-terra-gold mb-6" />
         <p className="text-terra-cream/70 leading-relaxed">{text}</p>
       </div>
     </div>
@@ -68,7 +68,7 @@ export default function Project() {
     {
       label: "A Origem",
       title: "Da simplicidade nasce a arte",
-      text: "Nascido e criado em Barbacena, no coração de Minas Gerais, Geovani Medeiros encontrou na música a sua forma de tocar as pessoas. Desde 2014, percorre palcos, bares, eventos e festivais levando um repertório autoral e eclético que celebra a riqueza da música brasileira com a autenticidade de quem vive cada nota.",
+      text: "Nascido e criado em Barbacena, no coração de Minas Gerais, Geovani encontrou na música a sua forma de tocar as pessoas. Desde 2014 percorre palcos e festivais do estado com arranjos autorais de gaita e violão, na autenticidade de quem vive cada nota.",
       image: "/images/projeto-origem.webp",
       alt: "Geovani Medeiros estendendo um microfone vintage prateado em direção à câmera, em retrato de estúdio",
       aspect: "aspect-[3/2]",
@@ -86,7 +86,7 @@ export default function Project() {
     {
       label: "O Futuro",
       title: "Uma nova fase começa agora",
-      text: "O audiovisual marca o início de um novo capítulo na trajetória de Geovani. Com a assinatura da Pacific Records de Belo Horizonte e disponível em todas as plataformas de streaming, 'Um Entardecer em Tiradentes' é o passo que consolida o artista no cenário mineiro e abre portas para levar sua música a novos públicos e palcos.",
+      text: "Com assinatura da Pacific Records, de Belo Horizonte, e disponível em todas as plataformas de streaming, 'Um Entardecer em Tiradentes' consolida Geovani no cenário mineiro e abre portas para novos públicos e palcos.",
       image: "/images/projeto-futuro.webp",
       alt: "Geovani Medeiros de braço erguido no gramado ao entardecer, com a banda completa atrás e o público sentado ao redor",
       aspect: "aspect-[3/2]",
@@ -95,7 +95,7 @@ export default function Project() {
   ];
 
   return (
-    <section id="projeto" className="py-24 md:py-32 bg-terra-dark">
+    <section id="projeto" className="py-24 md:py-32 bg-terra-wine">
       <div className="max-w-6xl mx-auto px-6">
         <div ref={headerRef} className="reveal text-center mb-20">
           <p className="text-terra-gold tracking-[0.2em] uppercase text-xs mb-4">
@@ -105,10 +105,10 @@ export default function Project() {
             Um Entardecer em{" "}
             <span className="text-terra-gold italic">Tiradentes</span>
           </h2>
-          <div className="editorial-line mx-auto" />
+          <div className="editorial-line editorial-line--gold mx-auto" />
           <p className="text-terra-cream/70 mt-6 max-w-2xl mx-auto leading-relaxed">
-            Dez músicas inéditas gravadas ao vivo, ao ar livre, em uma única
-            tarde. O novo audiovisual de Geovani Medeiros, pela Pacific Records.
+            O registro de uma tarde só, ao ar livre, no alto de Tiradentes.
+            O novo audiovisual de Geovani Medeiros.
           </p>
         </div>
 

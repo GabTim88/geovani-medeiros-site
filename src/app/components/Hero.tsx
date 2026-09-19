@@ -6,15 +6,16 @@ import { useEffect, useRef, useState } from "react";
 /**
  * Vídeo de fundo do hero.
  *
- * hero.mp4: 13.1MB, 57s, 1080p, ~1.9 Mbps, sem trilha de áudio, com o moov
- * no início (faststart) para começar a tocar sem baixar o arquivo inteiro.
+ * hero.mp4: 15.6MB, 20.5s, 1080p, ~6.4 Mbps, com o moov no início
+ * (faststart), então começa a tocar sem baixar o arquivo inteiro.
  *
- * Ainda assim são 13MB, então o vídeo é carregado condicionalmente (ver
- * `useEffect`): só em telas largas, sem economia de dados e sem preferência
- * por movimento reduzido. `hero.webp` é sempre o primeiro quadro visível, e é
- * ela o LCP — o hero nunca depende do vídeo para ficar pronto.
+ * O vídeo é o fundo padrão em qualquer tela, inclusive no celular.
+ * `hero.webp` pinta primeiro (é ela o LCP) e sai de cena assim que o vídeo
+ * está pronto — nunca ficam as duas visíveis ao mesmo tempo. A foto só
+ * permanece quando o vídeo não deve carregar: economia de dados ligada,
+ * conexão 2g, preferência por movimento reduzido, ou falha no download.
  *
- * Para cair a ~3MB: cortar o loop para 10-15s (hoje são 57s).
+ * A 6.4 Mbps o arquivo ainda é pesado para 20s: ~1.8 Mbps daria ~4.6MB.
  */
 const HERO_VIDEO: { mp4: string | null; webm?: string } = {
   mp4: "/videos/hero.mp4",
@@ -39,10 +40,11 @@ export default function Hero() {
 
   // Só para a entrada do logotipo na montagem.
   const [mounted, setMounted] = useState(false);
+  // O vídeo é o padrão em qualquer tela. A foto só assume quando o vídeo
+  // não deve ou não consegue carregar.
   const [showVideo, setShowVideo] = useState(false);
   const [videoReady, setVideoReady] = useState(false);
 
-  // O vídeo é um luxo, não um requisito: só carrega onde não custa caro.
   useEffect(() => {
     if (!HERO_VIDEO.mp4) return;
 
@@ -52,14 +54,16 @@ export default function Hero() {
       }
     ).connection;
 
+    // Economia de dados ligada ou conexão 2g: a foto basta.
     const saveData = conn?.saveData === true;
-    const slow = /(^|-)2g$/.test(conn?.effectiveType ?? "");
+    const verySlow = /(^|-)2g$/.test(conn?.effectiveType ?? "");
+
+    // Vídeo em loop é movimento — continua valendo a preferência do sistema.
     const reduced = window.matchMedia(
       "(prefers-reduced-motion: reduce)"
     ).matches;
-    const wide = window.matchMedia("(min-width: 768px)").matches;
 
-    setShowVideo(wide && !saveData && !slow && !reduced);
+    setShowVideo(!saveData && !verySlow && !reduced);
   }, []);
 
   useEffect(() => {
@@ -112,7 +116,10 @@ export default function Hero() {
       <div className="hero-stage bg-terra-dark">
         {/* Fundo */}
         <div className="absolute inset-0">
-          {/* Primeiro quadro: é ele o LCP, não o vídeo */}
+          {/*
+            Primeiro quadro: é ele o LCP. Sai de cena quando o vídeo assume —
+            as duas camadas visíveis ao mesmo tempo somavam um composto turvo.
+          */}
           <Image
             src={HERO_POSTER}
             alt=""
@@ -120,7 +127,9 @@ export default function Hero() {
             fill
             priority
             sizes="100vw"
-            className="object-cover opacity-60"
+            className={`object-cover transition-opacity duration-1000 ${
+              videoReady ? "opacity-0" : "opacity-60"
+            }`}
           />
 
           {showVideo && HERO_VIDEO.mp4 ? (
@@ -132,9 +141,13 @@ export default function Hero() {
               muted
               loop
               playsInline
-              preload="none"
-              poster={HERO_POSTER}
+              preload="auto"
               onCanPlay={() => setVideoReady(true)}
+              onError={() => {
+                // Falhou o download: a foto continua no lugar.
+                setVideoReady(false);
+                setShowVideo(false);
+              }}
               aria-hidden="true"
               tabIndex={-1}
             >

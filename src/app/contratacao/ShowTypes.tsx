@@ -74,7 +74,8 @@ export default function ShowTypes() {
             Formatos de show
           </p>
           <h2 className="font-serif text-terra-dark text-3xl md:text-5xl mb-6">
-            Três formatos,{" "}
+            Três formatos,
+            <br className="sm:hidden" />{" "}
             <span className="text-terra-burn italic">um para cada ocasião</span>
           </h2>
           <div className="editorial-line mx-auto" />

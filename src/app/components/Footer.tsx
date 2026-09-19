@@ -50,7 +50,7 @@ export default function Footer() {
           {/* Social */}
           <div>
             <p className="text-terra-gold tracking-[0.2em] uppercase text-xs mb-4">
-              Redes sociais
+              Onde acompanhar
             </p>
             <div className="flex flex-col gap-2">
               <a
