@@ -24,13 +24,11 @@ export default function Header() {
   }, [menuOpen]);
 
   const navLinks = [
-    { label: "Início", href: "/#inicio" },
     { label: "Sobre", href: "/#sobre" },
     { label: "Projeto", href: "/#projeto" },
     { label: "Depoimentos", href: "/#depoimentos" },
     { label: "Mídia", href: "/#midia" },
     { label: "Agenda", href: "/#agenda" },
-    { label: "Contratação", href: "/contratacao" },
   ];
 
   return (
@@ -55,11 +53,17 @@ export default function Header() {
             <Link
               key={link.href}
               href={link.href}
-              className="flex items-center min-h-[44px] px-1 text-terra-cream/80 hover:text-terra-gold text-sm tracking-widest uppercase transition-colors duration-300"
+              className="flex items-center min-h-[44px] px-1 text-terra-cream/80 hover:text-terra-gold text-sm tracking-widest transition-colors duration-300"
             >
               {link.label}
             </Link>
           ))}
+          <Link
+            href="/contratacao"
+            className="flex items-center min-h-[44px] px-6 rounded-full bg-terra-gold text-terra-dark text-sm font-medium tracking-widest hover:bg-terra-gold/90 transition-colors duration-300"
+          >
+            Contrate agora
+          </Link>
         </nav>
 
         {/* Mobile hamburger */}
@@ -97,11 +101,18 @@ export default function Header() {
               key={link.href}
               href={link.href}
               onClick={() => setMenuOpen(false)}
-              className="flex items-center min-h-[44px] text-terra-cream/80 hover:text-terra-gold text-sm tracking-widest uppercase transition-colors border-b border-terra-cream/10"
+              className="flex items-center min-h-[44px] text-terra-cream/80 hover:text-terra-gold text-sm tracking-widest transition-colors border-b border-terra-cream/10"
             >
               {link.label}
             </Link>
           ))}
+          <Link
+            href="/contratacao"
+            onClick={() => setMenuOpen(false)}
+            className="flex items-center justify-center min-h-[44px] mt-2 rounded-full bg-terra-gold text-terra-dark text-sm font-medium tracking-widest hover:bg-terra-gold/90 transition-colors"
+          >
+            Contrate agora
+          </Link>
         </nav>
       </div>
     </header>

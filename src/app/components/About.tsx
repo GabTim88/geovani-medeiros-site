@@ -38,14 +38,15 @@ export default function About() {
             <div className="editorial-line mb-8" />
             <div className="space-y-5 text-terra-dark/75 leading-relaxed">
               <p>
-                Sozinho, Geovani constrói a sonoridade de uma banda inteira &mdash; e lê
-                o público com o carisma de quem sabe exatamente quando acelerar e quando
-                deixar a música respirar.
+                Sozinho ou com a formação musical que você preferir, Geovani Medeiros contrói a apresentação artística 
+                com corpo alma e coração entregues para a música. Com carisma e leitura coerente do publico, 
+                sabe bem como trabalhar a dinâmica de qualquer evento.
               </p>
               <p>
-                São mais de dez anos de estrada: casamento, bar, evento corporativo,
-                festival. E um álbum, <em>&ldquo;Pra Começar&rdquo;</em>, de 2017, com
-                mais de cinco mil cópias distribuídas em produção 100% independente.
+                São mais de 10 anos de estrada. Desde o começo nos bares da região, eventos corporativos, 
+                até grandes festas espalhadas por tantas cidades de Minas Gerais. Tudo começou a ficar mais sério, 
+                quando em 2017, lançou seu primeiro álbum “Pra começar”. Na época ainda com disponibilidade das mídias físicas (CD), 
+                o artista distribuiu mais de 5 mil cópias desse projeto feito de forma 100 % independente.
               </p>
             </div>
 

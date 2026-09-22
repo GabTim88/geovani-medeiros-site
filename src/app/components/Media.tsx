@@ -1,13 +1,41 @@
 "use client";
 
 import Image from "next/image";
+import { useEffect, useState } from "react";
 import { useReveal } from "@/lib/useReveal";
 import { site } from "@/lib/site";
+
+/**
+ * Vídeo de fundo da seção "Ouça agora": ~30s, em loop, cobrindo a altura
+ * total da seção. Ainda não entregue — path reservado; enquanto o arquivo
+ * não existir em /public/videos/midia-bg.mp4, a foto (midias.jpg) continua
+ * como fundo via onError.
+ */
+const MIDIA_VIDEO = "/videos/midia-bg.mp4";
 
 export default function Media() {
   const headerRef = useReveal();
   const spotifyRef = useReveal(0.1);
   const youtubeRef = useReveal(0.1);
+
+  const [showVideo, setShowVideo] = useState(false);
+  const [videoReady, setVideoReady] = useState(false);
+
+  useEffect(() => {
+    const conn = (
+      navigator as Navigator & {
+        connection?: { saveData?: boolean; effectiveType?: string };
+      }
+    ).connection;
+
+    const saveData = conn?.saveData === true;
+    const verySlow = /(^|-)2g$/.test(conn?.effectiveType ?? "");
+    const reduced = window.matchMedia(
+      "(prefers-reduced-motion: reduce)"
+    ).matches;
+
+    setShowVideo(!saveData && !verySlow && !reduced);
+  }, []);
 
   return (
     <section
@@ -20,10 +48,36 @@ export default function Media() {
         aria-hidden="true"
         fill
         sizes="100vw"
-        className="object-cover"
+        className={`object-cover transition-opacity duration-1000 ${
+          videoReady ? "opacity-0" : "opacity-100"
+        }`}
       />
+
+      {showVideo ? (
+        <video
+          className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-1000 ${
+            videoReady ? "opacity-100" : "opacity-0"
+          }`}
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="auto"
+          onCanPlay={() => setVideoReady(true)}
+          onError={() => {
+            setVideoReady(false);
+            setShowVideo(false);
+          }}
+          aria-hidden="true"
+          tabIndex={-1}
+        >
+          <source src={MIDIA_VIDEO} type="video/mp4" />
+        </video>
+      ) : null}
+
       {/* Véu a 88%: abaixo disso o kicker dourado reprova AA sobre os pontos
-          mais claros da foto. A imagem fica como textura, não como assunto. */}
+          mais claros da imagem de fundo. A imagem/vídeo fica como textura,
+          não como assunto. */}
       <div className="absolute inset-0 bg-terra-dark/[0.88]" />
 
       <div className="relative z-10 max-w-6xl mx-auto px-6">

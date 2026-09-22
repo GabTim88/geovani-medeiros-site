@@ -65,4 +65,33 @@ export const testimonials: Testimonial[] = [
     location: "Belo Horizonte/MG",
     context: "Evento privado",
   },
+  {
+    // Digitação corrigida ("o que o que" -> "o que"; "extraordinaria" ->
+    // "extraordinária"); texto do cliente inalterado fora isso.
+    quote:
+      "Simplesmente fantástico, entrega muito mais do que o esperado, ultra profissional, pontual e altíssimo astral, e a banda é extraordinária. Nosso casamento não seria o mesmo sem Geovani e Banda.",
+    quoteShort:
+      "Simplesmente fantástico, entrega muito mais do que o esperado, ultra profissional, pontual e altíssimo astral. Nosso casamento não seria o mesmo sem Geovani e Banda.",
+    name: "Hugo Felipe",
+    location: "Betim/MG",
+    context: "Casamento",
+  },
+  {
+    quote:
+      "Em Tiradentes, esse ano, nos encantamos pela cidade e tivemos a oportunidade de assistirmos ao seu show: encantamento em dose dupla! Obrigada por aceitar o nosso convite, organizar a sua agenda e vir a Patrocínio para o aniversário do meu marido! Foi lindo!",
+    quoteShort:
+      "Em Tiradentes, esse ano, nos encantamos pela cidade e tivemos a oportunidade de assistirmos ao seu show: encantamento em dose dupla! Foi lindo!",
+    name: "Adenilda",
+    location: "Patrocínio/MG",
+    context: "Aniversário",
+  },
+  {
+    quote:
+      "Ter o Geovani cantando no meu casamento foi, sem dúvida, um momento muito especial para mim. Sempre admirei muito o seu trabalho, seu talento e a forma como ele consegue transmitir tanta emoção através da música. Sempre falava que, quando eu me casasse, ele seria uma das pessoas que eu chamaria para fazer parte desse momento tão importante.\n\nE foi exatamente assim! Fiquei muito feliz em poder tê-lo presente no meu casamento e ainda mais especial foi poder contar com o seu talento para tornar aquele dia inesquecível. Ele encantou a mim e aos nossos convidados, com seu carisma, sua voz e uma energia maravilhosa.\n\nFoi uma alegria enorme ter o Geovani fazendo parte da nossa história. Sou muito grata por esse momento!",
+    quoteShort:
+      "Ter o Geovani cantando no meu casamento foi um momento muito especial. Ele encantou a mim e aos nossos convidados, com seu carisma, sua voz e uma energia maravilhosa. Foi uma alegria enorme ter o Geovani fazendo parte da nossa história!",
+    name: "Marisa Melo",
+    location: "Alfredo Vasconcelos/MG",
+    context: "Casamento",
+  },
 ];

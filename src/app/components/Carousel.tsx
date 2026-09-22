@@ -3,16 +3,14 @@
 import { useCallback, useEffect, useRef, type ReactNode } from "react";
 
 /**
- * Faixa horizontal com rolagem automática contínua (direita -> esquerda).
+ * Faixa horizontal com rolagem automática contínua e loop infinito real (direita -> esquerda).
  *
- * - Auto-scroll via requestAnimationFrame sobre `scrollLeft`, e não via
- *   transform: assim o arrasto nativo por toque no mobile funciona de graça,
- *   com a inércia do próprio sistema.
+ * - Auto-scroll via requestAnimationFrame sobre `scrollLeft`, mantendo o arrasto nativo por toque.
  * - Pausa no hover (mouse), no foco por teclado e enquanto a pessoa arrasta.
- * - Loop infinito: a lista é renderizada duas vezes. A distância do loop é
- *   MEDIDA (offsetLeft do 2º grupo menos o do 1º), e não estimada como metade
- *   do scrollWidth — metade não inclui o gap entre os grupos e produziria um
- *   salto visível a cada volta.
+ * - Loop infinito garantido: a lista é multiplicada em 4 grupos para que o scrollWidth total
+ *   seja sempre muito maior do que a largura da tela (clientWidth), evitando travamentos
+ *   na borda física de rolagem do elemento em telas grandes ou após o último item.
+ * - Medição precisa da distância do loop (`b.offsetLeft - a.offsetLeft`).
  * - prefers-reduced-motion: não anima; vira uma faixa rolável comum.
  */
 export default function Carousel({
@@ -35,12 +33,16 @@ export default function Carousel({
   // Refs e não state: pausar não deve reiniciar o loop de animação.
   const pausedRef = useRef(false);
   const loopRef = useRef(0);
+  const posRef = useRef(0);
   const resumeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const measure = useCallback(() => {
     const a = groupARef.current;
     const b = groupBRef.current;
-    if (a && b) loopRef.current = b.offsetLeft - a.offsetLeft;
+    if (a && b) {
+      const dist = b.offsetLeft - a.offsetLeft;
+      if (dist > 0) loopRef.current = dist;
+    }
   }, []);
 
   useEffect(() => {
@@ -64,10 +66,16 @@ export default function Carousel({
       last = now;
 
       const loop = loopRef.current;
-      if (!pausedRef.current && loop > 0) {
-        let next = el.scrollLeft + (speed * dt) / 1000;
-        if (next >= loop) next -= loop;
-        el.scrollLeft = next;
+      if (!pausedRef.current && loop > 0 && el) {
+        let currentPos = el.scrollLeft;
+        let nextPos = currentPos + (speed * dt) / 1000;
+
+        if (nextPos >= loop) {
+          nextPos -= loop;
+        }
+
+        el.scrollLeft = nextPos;
+        posRef.current = nextPos;
       }
 
       raf = requestAnimationFrame(step);
@@ -80,12 +88,18 @@ export default function Carousel({
     };
   }, [speed, measure]);
 
-  // Se a pessoa arrastar para trás além do início, reentra pelo fim.
+  // Normalização do scroll durante o arrasto ou rolagem manual
   const onScroll = () => {
     const el = scrollerRef.current;
     const loop = loopRef.current;
     if (!el || loop <= 0) return;
-    if (el.scrollLeft <= 0) el.scrollLeft = loop;
+
+    if (el.scrollLeft <= 0) {
+      el.scrollLeft += loop;
+    } else if (el.scrollLeft >= loop * 2) {
+      el.scrollLeft -= loop;
+    }
+    posRef.current = el.scrollLeft;
   };
 
   const pause = () => {
@@ -127,8 +141,14 @@ export default function Carousel({
         <div ref={groupARef} className="flex gap-8">
           {children}
         </div>
-        {/* Cópia para o loop — escondida de leitores de tela */}
+        {/* Cópias para o loop infinito contínuo */}
         <div ref={groupBRef} className="flex gap-8" aria-hidden="true">
+          {children}
+        </div>
+        <div className="flex gap-8" aria-hidden="true">
+          {children}
+        </div>
+        <div className="flex gap-8" aria-hidden="true">
           {children}
         </div>
       </div>
