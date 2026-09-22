@@ -39,16 +39,16 @@ export default function Header() {
           : "bg-transparent py-6"
       }`}
     >
-      <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
+      <div className="max-w-7xl mx-auto px-6 flex items-center justify-between md:grid md:grid-cols-[1fr_auto_1fr] md:items-center">
         <Link
           href="/"
-          className="font-serif text-terra-cream text-xl md:text-2xl tracking-wide hover:text-terra-gold transition-colors"
+          className="font-serif text-terra-cream text-xl md:text-2xl tracking-wide hover:text-terra-gold transition-colors justify-self-start"
         >
           Geovani Medeiros
         </Link>
 
         {/* Desktop nav */}
-        <nav className="hidden md:flex items-center gap-8">
+        <nav className="hidden md:flex items-center gap-8 justify-self-center">
           {navLinks.map((link) => (
             <Link
               key={link.href}
@@ -58,13 +58,15 @@ export default function Header() {
               {link.label}
             </Link>
           ))}
-          <Link
-            href="/contratacao"
-            className="flex items-center min-h-[44px] px-6 rounded-full bg-terra-gold text-terra-dark text-sm font-medium tracking-widest hover:bg-terra-gold/90 transition-colors duration-300"
-          >
-            Contrate agora
-          </Link>
         </nav>
+
+        {/* Desktop CTA */}
+        <Link
+          href="/contratacao"
+          className="hidden md:flex items-center min-h-[44px] px-6 rounded-full bg-terra-gold text-terra-dark text-sm font-medium tracking-widest hover:bg-terra-gold/90 transition-colors duration-300 justify-self-end"
+        >
+          Contrate agora
+        </Link>
 
         {/* Mobile hamburger */}
         <button
