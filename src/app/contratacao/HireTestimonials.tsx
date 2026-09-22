@@ -1,16 +1,38 @@
 "use client";
 
 import { useReveal } from "@/lib/useReveal";
+import { useVideoBackgroundEnabled } from "@/lib/useVideoBackground";
 import { testimonials, type Testimonial } from "@/lib/testimonials";
 import Carousel from "../components/Carousel";
 
+const TESTIMONIALS_VIDEO = "/videos/video-background-02.mp4";
 
 export default function HireTestimonials() {
   const ref = useReveal();
+  const showVideo = useVideoBackgroundEnabled();
 
   return (
-    <section className="py-24 md:py-32 bg-terra-dark">
-      <div className="max-w-6xl mx-auto px-6">
+    <section className="relative overflow-hidden py-24 md:py-32 bg-terra-dark">
+      {showVideo ? (
+        <video
+          className="absolute inset-0 h-full w-full object-cover"
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="auto"
+          aria-hidden="true"
+          tabIndex={-1}
+        >
+          <source src={TESTIMONIALS_VIDEO} type="video/mp4" />
+        </video>
+      ) : null}
+
+      {/* Véu a 88%, mesmo tratamento da seção "Ouça agora": mantém o
+          contraste do kicker dourado e dos cards sobre o vídeo. */}
+      <div className="absolute inset-0 bg-terra-dark/[0.88]" />
+
+      <div className="relative z-10 max-w-6xl mx-auto px-6">
         <div ref={ref} className="reveal text-center mb-16">
           <p className="text-terra-gold tracking-[0.2em] uppercase text-xs mb-4">
             Quem já contratou
@@ -27,14 +49,16 @@ export default function HireTestimonials() {
 
       </div>
 
-      <Carousel
-        ariaLabel="Depoimentos de clientes"
-        speed={28}
-      >
-        {testimonials.map((t) => (
-          <HireTestimonialCard key={t.name} {...t} />
-        ))}
-      </Carousel>
+      <div className="relative z-10">
+        <Carousel
+          ariaLabel="Depoimentos de clientes"
+          speed={28}
+        >
+          {testimonials.map((t) => (
+            <HireTestimonialCard key={t.name} {...t} />
+          ))}
+        </Carousel>
+      </div>
     </section>
   );
 }

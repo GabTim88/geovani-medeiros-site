@@ -108,7 +108,7 @@ export default function Project() {
           <div className="editorial-line editorial-line--gold mx-auto" />
           <p className="text-terra-cream/70 mt-6 max-w-2xl mx-auto leading-relaxed">
             O registro de uma tarde só, ao ar livre, no alto de Tiradentes.
-            O novo audiovisual de Geovani Medeiros.
+            <br />O novo audiovisual de Geovani Medeiros.
           </p>
         </div>
 

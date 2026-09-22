@@ -1,6 +1,7 @@
 import Hero from "./components/Hero";
 import About from "./components/About";
 import Project from "./components/Project";
+import VideoSection from "./components/VideoSection";
 import Testimonials from "./components/Testimonials";
 import Media from "./components/Media";
 import Gallery from "./components/Gallery";
@@ -13,6 +14,7 @@ export default function Home() {
       <Hero />
       <About />
       <Project />
+      <VideoSection />
       <Testimonials />
       <Media />
       <Gallery />
