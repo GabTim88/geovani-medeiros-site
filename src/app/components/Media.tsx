@@ -88,9 +88,9 @@ export default function Media() {
             <p className="text-terra-cream/70 leading-relaxed mb-4">
               As dez faixas de &ldquo;Um Entardecer em Tiradentes&rdquo; já
               estão no Spotify, prontas para tocar sempre que bater a
-              vontade. Aperte o play ao lado e deixe a gaita e o violão
-              contarem, mais uma vez, a história de uma tarde inteira em
-              Tiradentes.
+              vontade. Aperte o play ao lado e deixe. a sonoridade das gaitas, 
+              violões e tantos outros instrumentos contarem, mais uma vez, 
+              a história de uma tarde inteira em Tiradentes.
             </p>
             <p className="text-terra-cream/70 leading-relaxed">
               Quer ver os bastidores da gravação? Acompanhe pelo Instagram e

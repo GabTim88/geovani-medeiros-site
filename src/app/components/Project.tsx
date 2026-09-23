@@ -79,7 +79,7 @@ export default function Project() {
     {
       label: "O Audiovisual",
       title: "Um Entardecer em Tiradentes",
-      text: "No gramado em frente à Capela de São Francisco de Paula, em Tiradentes, Geovani gravou dez músicas inéditas ao vivo, cercado por 40 convidados sob a luz do entardecer mineiro. Com direção de Marcus Santiago, produção musical de Augusto Nogueira e direção artística de Nara Soalheiro, o projeto captura a essência de um artista em sua forma mais genuína.",
+      text: "No gramado em frente à Capela de São Francisco de Paula, em Tiradentes, Geovani interpretou dez sucessos da música brasileira ao vivo, com arranjos inéditos, cercado por convidados sob a luz do entardecer mineiro. Com direção de Marcus Santiago, produção musical de Augusto Nogueira e direção artística de Nara Soalheiro, o projeto captura a essência de um artista em sua forma mais genuína.",
       image: "/images/projeto-tiradentes1.webp",
       alt: "Geovani Medeiros cantando ao violão em um microfone vintage, com as torres de uma igreja barroca de Tiradentes ao fundo",
       aspect: "aspect-[1080/1744]",
