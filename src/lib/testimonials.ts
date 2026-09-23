@@ -7,9 +7,10 @@
  * REGRA: `quote` é declaração atribuída a pessoa real — não reescrever.
  * `quoteShort` é recorte literal usado nos cards de /contratacao.
  *
- * Duas exceções, ambas sinalizadas no item correspondente:
+ * Três exceções, todas sinalizadas no item correspondente:
  * emojis removidos e o nome do artista grafado corretamente no depoimento da
- * Janaína, e o texto do Carlos Eduardo condensado a pedido do cliente.
+ * Janaína, e os textos do Carlos Eduardo e da Marisa Melo condensados a pedido
+ * do cliente.
  */
 
 export interface Testimonial {
@@ -86,8 +87,12 @@ export const testimonials: Testimonial[] = [
     context: "Aniversário",
   },
   {
+    // Condensado a pedido do cliente: 722 caracteres e dois parágrafos deixavam
+    // o card com quase o dobro da altura dos demais. São só cortes — nenhuma
+    // palavra foi acrescentada ao que a Marisa escreveu.
+    // TODO(cliente): validar esta versão com a Marisa antes de publicar.
     quote:
-      "Ter o Geovani cantando no meu casamento foi, sem dúvida, um momento muito especial para mim. Sempre admirei muito o seu trabalho, seu talento e a forma como ele consegue transmitir tanta emoção através da música. Sempre falava que, quando eu me casasse, ele seria uma das pessoas que eu chamaria para fazer parte desse momento tão importante.\n\nE foi exatamente assim! Fiquei muito feliz em poder tê-lo presente no meu casamento e ainda mais especial foi poder contar com o seu talento para tornar aquele dia inesquecível. Ele encantou a mim e aos nossos convidados, com seu carisma, sua voz e uma energia maravilhosa.\n\nFoi uma alegria enorme ter o Geovani fazendo parte da nossa história. Sou muito grata por esse momento!",
+      "Ter o Geovani cantando no meu casamento foi, sem dúvida, um momento muito especial para mim. Sempre admirei o seu trabalho, seu talento e a forma como ele consegue transmitir tanta emoção através da música. Sempre falava que, quando eu me casasse, ele seria uma das pessoas que eu chamaria. E foi exatamente assim! Ele encantou a mim e aos nossos convidados, com seu carisma, sua voz e uma energia maravilhosa. Sou muito grata por esse momento!",
     quoteShort:
       "Ter o Geovani cantando no meu casamento foi um momento muito especial. Ele encantou a mim e aos nossos convidados, com seu carisma, sua voz e uma energia maravilhosa. Foi uma alegria enorme ter o Geovani fazendo parte da nossa história!",
     name: "Marisa Melo",
