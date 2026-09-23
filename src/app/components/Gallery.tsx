@@ -7,43 +7,105 @@ import { useReveal } from "@/lib/useReveal";
  * Masonry em CSS columns. As imagens entram com largura/altura intrínsecas
  * (w-full h-auto) em vez de caixa com aspect fixo: o mosaico fica com as
  * proporções reais das fotos e sem layout shift.
+ *
+ * `width`/`height` são as dimensões reais dos arquivos em /public/images —
+ * se uma foto for trocada por outra de proporção diferente, atualizar aqui,
+ * senão o navegador reserva a caixa errada e o mosaico salta ao carregar.
+ *
+ * A ordem alterna retratos e paisagens de propósito: em CSS columns as fotos
+ * caem na sequência da lista, e blocos de mesma proporção seguidos deixam as
+ * colunas visivelmente desiguais.
  */
 const galleryItems = [
   {
     src: "/images/1.webp",
-    width: 798,
-    height: 1200,
-    alt: "Geovani Medeiros em retrato de estúdio, de jaqueta caramelo, segurando o violão ao lado do corpo",
-  },
-  {
-    src: "/images/2.webp",
-    width: 1200,
-    height: 800,
-    alt: "Sanfoneiro e violonista tocando ao ar livre, com o casario de Tiradentes ao fundo",
+    width: 1067,
+    height: 1600,
+    alt: "Retrato em preto e branco de Geovani Medeiros tocando violão e gaita de boca no suporte de pescoço, sob a luz de palco",
   },
   {
     src: "/images/3.webp",
-    width: 798,
-    height: 1200,
-    alt: "Geovani Medeiros tocando gaita em retrato de estúdio sobre fundo escuro",
-  },
-  {
-    src: "/images/4.webp",
-    width: 1200,
-    height: 800,
-    alt: "Baixista e violonista tocando lado a lado no contraluz dourado do entardecer",
+    width: 1600,
+    height: 1067,
+    alt: "Vista ampla da apresentação no gramado, com a banda entre os instrumentos e o casario de Tiradentes na encosta ao fundo",
   },
   {
     src: "/images/5.webp",
-    width: 1200,
-    height: 800,
-    alt: "Geovani Medeiros de braço erguido no palco ao ar livre, com montanhas e o público sentado ao fundo",
+    width: 1065,
+    height: 1600,
+    alt: "Geovani Medeiros em retrato de estúdio, de jaqueta jeans, segurando a gaita de boca sobre fundo escuro",
+  },
+  {
+    src: "/images/2.webp",
+    width: 720,
+    height: 1080,
+    alt: "Geovani Medeiros de pé tocando violão em palco ao ar livre, entre palmeiras e com a banda ao fundo",
+  },
+  {
+    src: "/images/14.webp",
+    width: 1080,
+    height: 720,
+    alt: "Panorâmica do show ao entardecer: a banda reunida no gramado, palmeiras e as montanhas ao fundo",
+  },
+  {
+    src: "/images/16.webp",
+    width: 1065,
+    height: 1600,
+    alt: "Retrato de estúdio de Geovani Medeiros de terno, tocando gaita de boca com as duas mãos",
+  },
+  {
+    src: "/images/4.webp",
+    width: 513,
+    height: 768,
+    alt: "Geovani Medeiros sentado tocando violão diante de uma parede rosa com janela colonial vermelha, o case do instrumento no chão",
+  },
+  {
+    src: "/images/13.webp",
+    width: 1080,
+    height: 667,
+    alt: "Banda e convidados reunidos para foto ao fim do show, à noite, com a igreja iluminada ao fundo",
+  },
+  {
+    src: "/images/17.webp",
+    width: 1067,
+    height: 1600,
+    alt: "Foto em preto e branco de Geovani Medeiros sorrindo enquanto toca violão em apresentação noturna",
+  },
+  {
+    src: "/images/09.webp",
+    width: 720,
+    height: 1080,
+    alt: "Geovani Medeiros cantando em microfone vintage e tocando violão, com o casario da cidade desfocado ao fundo",
   },
   {
     src: "/images/6.webp",
-    width: 800,
-    height: 1200,
-    alt: "Geovani Medeiros sentado em uma banqueta tocando violão, cercado pelos convidados no gramado",
+    width: 1024,
+    height: 684,
+    alt: "Geovani Medeiros de violão em punho diante da serra, em campo aberto",
+  },
+  {
+    src: "/images/18.webp",
+    width: 1065,
+    height: 1600,
+    alt: "Geovani Medeiros de óculos escuros tocando violão ao ar livre, sob a copa de uma árvore",
+  },
+  {
+    src: "/images/11.webp",
+    width: 720,
+    height: 1080,
+    alt: "Geovani Medeiros sentado tocando violão com a banda, cercado pelo público em pé durante o show",
+  },
+  {
+    src: "/images/15.webp",
+    width: 1080,
+    height: 705,
+    alt: "Músicos e público posando juntos entre os instrumentos ao fim da apresentação noturna",
+  },
+  {
+    src: "/images/12.webp",
+    width: 781,
+    height: 1080,
+    alt: "Geovani Medeiros ao microfone em show noturno, com a igreja iluminada no alto da colina ao fundo",
   },
 ];
 
@@ -66,8 +128,8 @@ export default function Gallery() {
           </p>
         </div>
 
-        {/* Duas colunas já no celular: em coluna única as 6 fotos viram
-            quatro telas de rolagem. */}
+        {/* Duas colunas já no celular: em coluna única as fotos viram
+            várias telas de rolagem. */}
         <div className="columns-2 lg:columns-3 gap-3 md:gap-4">
           {galleryItems.map((item) => (
             <GalleryItem key={item.src} {...item} />

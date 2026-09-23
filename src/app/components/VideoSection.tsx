@@ -17,11 +17,12 @@ import {
  * Primeiro quadro do player.
  *
  * TODO(cliente): hoje é um recorte de `projeto-futuro.webp`, não um frame do
- * vídeo. Trocar por um quadro real de `video-player.mp4` assim que houver um.
+ * vídeo. Com o arquivo novo em `video-player.mp4` (1920x1080, 1min09) o poster
+ * continua sendo de outra imagem — trocar por um quadro real do vídeo.
  *
- * TODO(cliente): comprimir `video-player.mp4`. São 43MB — mesmo com
- * preload="none", quem aperta o play paga a conta. Uma versão 720p a ~2 Mbps
- * ficaria perto de 10MB.
+ * TODO(cliente): o arquivo novo caiu de 43MB para 27,6MB, mas ainda é pesado
+ * para 1min09. Uma versão 1080p a ~4 Mbps ficaria perto de 8MB. O `moov` já
+ * está no início do arquivo, então o play começa sem esperar o download todo.
  */
 const VIDEO_POSTER = "/images/video-player-poster.webp";
 
@@ -34,7 +35,7 @@ export default function VideoSection() {
         </h2>
         <VideoPlayer className="overflow-hidden rounded-sm border border-terra-dark/10 shadow-lg">
           {/*
-            preload="none": o arquivo tem 43MB e só deve baixar quando alguém
+            preload="none": o arquivo tem 27,6MB e só deve baixar quando alguém
             aperta o play. Até lá, quem segura a caixa é o poster.
           */}
           <VideoPlayerContent
