@@ -8,7 +8,7 @@ export default function CTABanner() {
   const ref = useReveal();
 
   return (
-    <section className="py-20 md:py-28 bg-terra-burn relative overflow-hidden">
+    <section className="py-16 md:py-28 bg-terra-burn relative overflow-hidden">
       <Image
         src="/images/cta-footer.jpg"
         alt=""
@@ -26,7 +26,7 @@ export default function CTABanner() {
           Seu evento merece{" "}
           <span className="text-terra-gold italic">música de verdade</span>
         </h2>
-        <p className="text-terra-cream/90 text-lg mb-10 max-w-2xl mx-auto leading-relaxed">
+        <p className="text-terra-cream/90 text-base md:text-lg mb-8 md:mb-10 max-w-2xl mx-auto leading-relaxed">
   Seja um show intimista ou uma grande apresentação com banda e estrutura completa de som e luz, Geovani Medeiros entrega a atmosfera perfeita para o seu evento.
   Diga o que você imaginou e ele cuidará do resto.
 </p>

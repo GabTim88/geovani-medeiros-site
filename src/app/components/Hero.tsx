@@ -1,7 +1,9 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
+import { useVideoBackgroundEnabled } from "@/lib/useVideoBackground";
 
 /**
  * Vídeo de fundo do hero.
@@ -9,11 +11,11 @@ import { useEffect, useRef, useState } from "react";
  * hero.mp4: 15.6MB, 20.5s, 1080p, ~6.4 Mbps, com o moov no início
  * (faststart), então começa a tocar sem baixar o arquivo inteiro.
  *
- * O vídeo é o fundo padrão em qualquer tela, inclusive no celular.
+ * O vídeo só carrega em telas >= 768px (ver useVideoBackgroundEnabled).
  * `hero.webp` pinta primeiro (é ela o LCP) e sai de cena assim que o vídeo
- * está pronto — nunca ficam as duas visíveis ao mesmo tempo. A foto só
- * permanece quando o vídeo não deve carregar: economia de dados ligada,
- * conexão 2g, preferência por movimento reduzido, ou falha no download.
+ * está pronto — nunca ficam as duas visíveis ao mesmo tempo. A foto é o
+ * fundo único no celular, com economia de dados ligada, conexão 2g,
+ * preferência por movimento reduzido, ou falha no download.
  *
  * A 6.4 Mbps o arquivo ainda é pesado para 20s: ~1.8 Mbps daria ~4.6MB.
  */
@@ -27,44 +29,25 @@ const HERO_POSTER = "/images/hero.webp";
 
 /**
  * Fração da altura da viewport em que a fase do logotipo dá lugar ao texto.
- * O trilho tem 260vh (ver .hero-track), então depois da troca o texto ainda
- * fica ~115vh na tela antes da seção terminar.
+ * O trilho tem 200vh (ver .hero-track), então depois da troca o texto ainda
+ * fica ~55vh na tela antes da seção terminar — tempo de sobra para o CTA
+ * entrar (0,8s de atraso) e ser lido.
  */
 const PHASE_SWITCH = 0.45;
 
 export default function Hero() {
-  const trackRef = useRef<HTMLDivElement>(null);
   const logoRef = useRef<HTMLDivElement>(null);
   const textRef = useRef<HTMLDivElement>(null);
   const hintRef = useRef<HTMLDivElement>(null);
 
   // Só para a entrada do logotipo na montagem.
   const [mounted, setMounted] = useState(false);
-  // O vídeo é o padrão em qualquer tela. A foto só assume quando o vídeo
-  // não deve ou não consegue carregar.
-  const [showVideo, setShowVideo] = useState(false);
+  // Vídeo só em tela larga, sem economia de dados/2g/movimento reduzido.
+  // No celular e em qualquer falha, a foto assume.
+  const videoAllowed = useVideoBackgroundEnabled();
+  const [videoFailed, setVideoFailed] = useState(false);
+  const showVideo = videoAllowed && !videoFailed;
   const [videoReady, setVideoReady] = useState(false);
-
-  useEffect(() => {
-    if (!HERO_VIDEO.mp4) return;
-
-    const conn = (
-      navigator as Navigator & {
-        connection?: { saveData?: boolean; effectiveType?: string };
-      }
-    ).connection;
-
-    // Economia de dados ligada ou conexão 2g: a foto basta.
-    const saveData = conn?.saveData === true;
-    const verySlow = /(^|-)2g$/.test(conn?.effectiveType ?? "");
-
-    // Vídeo em loop é movimento — continua valendo a preferência do sistema.
-    const reduced = window.matchMedia(
-      "(prefers-reduced-motion: reduce)"
-    ).matches;
-
-    setShowVideo(!saveData && !verySlow && !reduced);
-  }, []);
 
   useEffect(() => {
     const reduced = window.matchMedia(
@@ -146,7 +129,7 @@ export default function Hero() {
               onError={() => {
                 // Falhou o download: a foto continua no lugar.
                 setVideoReady(false);
-                setShowVideo(false);
+                setVideoFailed(true);
               }}
               aria-hidden="true"
               tabIndex={-1}
@@ -201,6 +184,13 @@ export default function Hero() {
             <p className="text-terra-cream/70 text-sm md:text-base mt-4">
               Desde 2014, no palco &mdash; e junto do público.
             </p>
+            {/* Entra depois do último texto (ver .hero-cta) */}
+            <Link
+              href="/contratacao"
+              className="hero-cta inline-flex items-center justify-center min-h-[48px] mt-8 px-8 rounded-full bg-terra-gold text-terra-dark text-sm font-medium tracking-widest uppercase hover:bg-terra-cream transition-colors duration-300"
+            >
+              Contrate agora
+            </Link>
           </div>
         </div>
 

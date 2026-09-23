@@ -51,9 +51,9 @@ export default function Gallery() {
   const headerRef = useReveal();
 
   return (
-    <section id="galeria" className="py-24 md:py-32 bg-terra-cream">
+    <section id="galeria" className="py-16 md:py-32 bg-terra-cream">
       <div className="max-w-6xl mx-auto px-6">
-        <div ref={headerRef} className="reveal text-center mb-16">
+        <div ref={headerRef} className="reveal text-center mb-10 md:mb-16">
           <p className="text-terra-burn tracking-[0.2em] uppercase text-xs mb-4">
             Galeria
           </p>
@@ -66,7 +66,9 @@ export default function Gallery() {
           </p>
         </div>
 
-        <div className="columns-1 sm:columns-2 lg:columns-3 gap-4">
+        {/* Duas colunas já no celular: em coluna única as 6 fotos viram
+            quatro telas de rolagem. */}
+        <div className="columns-2 lg:columns-3 gap-3 md:gap-4">
           {galleryItems.map((item) => (
             <GalleryItem key={item.src} {...item} />
           ))}
@@ -85,14 +87,14 @@ function GalleryItem({
   const ref = useReveal(0.08);
 
   return (
-    <div ref={ref} className="reveal break-inside-avoid group mb-4">
+    <div ref={ref} className="reveal break-inside-avoid group mb-3 md:mb-4">
       <div className="relative overflow-hidden rounded-sm bg-terra-dark/5 group-hover:shadow-xl transition-shadow duration-500">
         <Image
           src={src}
           alt={alt}
           width={width}
           height={height}
-          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 360px"
+          sizes="(max-width: 1024px) 50vw, 360px"
           className="w-full h-auto"
         />
         <div

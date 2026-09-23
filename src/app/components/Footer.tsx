@@ -23,7 +23,9 @@ export default function Footer() {
             <p className="text-terra-gold tracking-[0.2em] uppercase text-xs mb-4">
               Navegação
             </p>
-            <nav className="flex flex-col gap-2">
+            {/* Alvos de 44px encostados, sem gap: a 20px de altura os links
+                reprovavam o mínimo de alvo de toque da WCAG 2.5.8. */}
+            <nav className="flex flex-col -my-2">
               {[
                 { label: "Início", href: "/#inicio" },
                 { label: "Sobre", href: "/#sobre" },
@@ -37,7 +39,7 @@ export default function Footer() {
                 <Link
                   key={link.href}
                   href={link.href}
-                  className="text-terra-cream/70 hover:text-terra-gold text-sm transition-colors"
+                  className="flex items-center min-h-[44px] text-terra-cream/70 hover:text-terra-gold text-sm transition-colors"
                 >
                   {link.label}
                 </Link>
@@ -50,41 +52,28 @@ export default function Footer() {
             <p className="text-terra-gold tracking-[0.2em] uppercase text-xs mb-4">
               Onde acompanhar
             </p>
-            <div className="flex flex-col gap-2">
-              <a
-                href={site.social.instagram}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-terra-cream/70 hover:text-terra-gold text-sm transition-colors"
-              >
-                Instagram
-              </a>
-              <a
-                href={site.social.youtube}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-terra-cream/70 hover:text-terra-gold text-sm transition-colors"
-              >
-                YouTube
-              </a>
-              <a
-                href={site.social.spotify}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-terra-cream/70 hover:text-terra-gold text-sm transition-colors"
-              >
-                Spotify
-              </a>
-              <a
-                href={whatsappLink(
-                  "Olá, Geovani! Gostaria de saber mais sobre seus shows."
-                )}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-terra-cream/70 hover:text-terra-gold text-sm transition-colors"
-              >
-                WhatsApp
-              </a>
+            <div className="flex flex-col -my-2">
+              {[
+                { label: "Instagram", href: site.social.instagram },
+                { label: "YouTube", href: site.social.youtube },
+                { label: "Spotify", href: site.social.spotify },
+                {
+                  label: "WhatsApp",
+                  href: whatsappLink(
+                    "Olá, Geovani! Gostaria de saber mais sobre seus shows."
+                  ),
+                },
+              ].map((link) => (
+                <a
+                  key={link.label}
+                  href={link.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center min-h-[44px] text-terra-cream/70 hover:text-terra-gold text-sm transition-colors"
+                >
+                  {link.label}
+                </a>
+              ))}
             </div>
           </div>
         </div>

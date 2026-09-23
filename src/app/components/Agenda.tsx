@@ -18,7 +18,7 @@ export default function Agenda() {
     <section
       id="agenda"
       aria-labelledby="agenda-titulo"
-      className="relative overflow-hidden bg-terra-dark border-t border-terra-cream/10 py-20 md:py-28 px-6 md:px-16"
+      className="relative overflow-hidden bg-terra-dark border-t border-terra-cream/10 py-16 md:py-28 px-6 md:px-16"
     >
       <Image
         src="/images/agenda.jpg"
@@ -32,7 +32,7 @@ export default function Agenda() {
           mais claros da foto. A imagem fica como textura, não como assunto. */}
       <div className="absolute inset-0 bg-terra-dark/[0.88]" />
 
-      <div className="relative z-10 max-w-[1400px] mx-auto grid lg:grid-cols-[1fr_1.1fr] gap-12 lg:gap-20 items-start">
+      <div className="relative z-10 max-w-[1400px] mx-auto grid lg:grid-cols-[1fr_1.1fr] gap-10 lg:gap-20 items-start">
         {/* Texto lateral */}
         <div ref={copyRef} className="reveal">
           <p className="text-terra-gold tracking-[0.3em] uppercase text-[0.65rem] mb-3">
@@ -103,19 +103,17 @@ export default function Agenda() {
               <div className="w-[38px]" aria-hidden="true" />
             </div>
 
+            {/*
+              Altura maior e rolagem liberada: a 420px com scrolling="no" a
+              lista era cortada sem aviso quando havia muitos eventos.
+            */}
             <iframe
               src={calendarSrc}
               title="Agenda de shows de Geovani Medeiros"
-              className="gcal-embed"
-              height={420}
+              className="gcal-embed h-[520px] md:h-[560px]"
               loading="lazy"
-              scrolling="no"
             />
           </div>
-
-          <p className="mt-4 text-terra-cream/60 text-xs text-center">
-            Horário de Brasília. Uma data marcada aqui pode abrir — pergunte.
-          </p>
         </div>
       </div>
     </section>

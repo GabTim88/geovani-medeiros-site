@@ -1,21 +1,24 @@
 # HeroSequencia
 
-A abertura da home: um trilho de 260vh com um palco fixo de 100svh. A pessoa rola cerca de 160vh enquanto o palco fica preso no topo, e o conteúdo troca em duas fases.
+A abertura da home: um trilho de 200vh com um palco fixo de 100svh. A pessoa rola cerca de 100vh enquanto o palco fica preso no topo, e o conteúdo troca em duas fases.
 
 ## As fases
 
 1. **Logotipo** entra com fade, 28px de subida e escala 0,96 → 1.
 2. **Fica fixo** enquanto o scroll percorre os primeiros 45% da altura da tela.
 3. **Crossfade**: o logotipo sai, a chamada entra na parte de baixo. O indicador de scroll some junto.
-4. A chamada permanece pelos ~115vh restantes.
+4. **O CTA** entra 0,8s depois da chamada, com fade e 12px de subida.
+5. A chamada e o CTA permanecem pelos ~55vh restantes.
 
-A troca é `scrollY >= 0.45 * innerHeight`, com `requestAnimationFrame` limitando a frequência. O JavaScript só alterna uma classe; a transição é toda CSS — 0,9s no logotipo, 0,7s no texto.
+A troca é `scrollY >= 0.45 * innerHeight`, com `requestAnimationFrame` limitando a frequência. O JavaScript só alterna uma classe; a transição é toda CSS — 0,9s no logotipo, 0,7s no texto, 0,7s no CTA depois de 0,8s de espera.
+
+A fase do texto alterna `visibility` junto com `opacity`: só com `opacity: 0` o CTA continuaria tabulável enquanto invisível.
 
 ## Fundo
 
-Vídeo em loop, mudo, é o padrão em qualquer tela. A foto pinta primeiro (é ela o LCP) e sai de cena quando o vídeo fica pronto. Nunca ficam as duas visíveis ao mesmo tempo: duas camadas a 60% somam um composto turvo.
+Foto em qualquer tela; vídeo em loop, mudo, só a partir de 768px. A foto pinta primeiro (é ela o LCP) e sai de cena quando o vídeo fica pronto. Nunca ficam as duas visíveis ao mesmo tempo: duas camadas a 60% somam um composto turvo.
 
-A foto permanece quando o vídeo não deve carregar — economia de dados, conexão 2g, movimento reduzido ou falha no download.
+No celular o vídeo não carrega de jeito nenhum: sob o véu escuro o movimento é quase imperceptível e custaria 16MB de dados e bateria. A foto também é o fundo único com economia de dados, conexão 2g, movimento reduzido ou falha no download. A regra mora em `useVideoBackgroundEnabled`.
 
 ## Armadilha de layout
 

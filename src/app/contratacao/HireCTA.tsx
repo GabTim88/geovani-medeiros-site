@@ -12,7 +12,7 @@ export default function HireCTA() {
   );
 
   return (
-    <section className="py-24 md:py-32 bg-terra-burn relative overflow-hidden">
+    <section className="py-16 md:py-32 bg-terra-burn relative overflow-hidden">
       <Image
         src="/images/cta-footer.jpg"
         alt=""
@@ -39,7 +39,7 @@ export default function HireCTA() {
         <h2 className="font-serif text-terra-cream text-3xl md:text-5xl mb-6 leading-tight">
           Me conte sua data
         </h2>
-        <p className="text-terra-cream/90 text-lg mb-10 max-w-xl mx-auto">
+        <p className="text-terra-cream/90 text-base md:text-lg mb-8 md:mb-10 max-w-xl mx-auto">
           Data, cidade e tipo de evento &mdash; com essas três informações já dá
           para sugerir o formato e enviar a proposta.
         </p>

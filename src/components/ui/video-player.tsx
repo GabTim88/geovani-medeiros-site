@@ -163,7 +163,8 @@ export function VideoPlayerControlBar({
   return (
     <div
       className={
-        className ?? "flex items-center gap-2 bg-terra-dark px-4 py-3"
+        className ??
+        "flex items-center gap-1 sm:gap-2 bg-terra-dark px-2 py-3 sm:px-4"
       }
     >
       {children}
@@ -174,10 +175,12 @@ export function VideoPlayerControlBar({
 function ControlButton({
   label,
   onClick,
+  className,
   children,
 }: {
   label: string;
   onClick: () => void;
+  className?: string;
   children: ReactNode;
 }) {
   return (
@@ -185,7 +188,10 @@ function ControlButton({
       type="button"
       onClick={onClick}
       aria-label={label}
-      className="p-1.5 text-terra-cream/80 transition-colors hover:text-terra-gold"
+      /* 44px: com p-1.5 em volta de um ícone de 18px o alvo ficava em 30px. */
+      className={`min-h-[44px] min-w-[44px] items-center justify-center text-terra-cream/80 transition-colors hover:text-terra-gold ${
+        className ?? "flex"
+      }`}
     >
       {children}
     </button>
@@ -213,10 +219,19 @@ export function VideoPlayerPlayButton() {
   );
 }
 
+/**
+ * Escondidos no celular (aqui e no avançar): com todos os alvos em 44px a
+ * barra não cabia em 340px. Arrastar a própria linha do tempo cobre o pulo de
+ * 10s, e no toque ela é o gesto natural.
+ */
 export function VideoPlayerSeekBackwardButton() {
   const { seekBy } = useVideoPlayer();
   return (
-    <ControlButton label="Voltar 10 segundos" onClick={() => seekBy(-10)}>
+    <ControlButton
+      label="Voltar 10 segundos"
+      onClick={() => seekBy(-10)}
+      className="hidden sm:flex"
+    >
       <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
         <path d="M12 5V1L7 6l5 5V7a5 5 0 1 1-5 5H5a7 7 0 1 0 7-7z" />
       </svg>
@@ -227,7 +242,11 @@ export function VideoPlayerSeekBackwardButton() {
 export function VideoPlayerSeekForwardButton() {
   const { seekBy } = useVideoPlayer();
   return (
-    <ControlButton label="Avançar 10 segundos" onClick={() => seekBy(10)}>
+    <ControlButton
+      label="Avançar 10 segundos"
+      onClick={() => seekBy(10)}
+      className="hidden sm:flex"
+    >
       <svg
         width="18"
         height="18"
@@ -271,10 +290,14 @@ export function VideoPlayerTimeDisplay({
       .padStart(2, "0");
     return `${m}:${s}`;
   };
+  // Com preload="none" a duração só chega depois do play. Até lá, mostrar
+  // "0:00 / 0:00" parece um player quebrado — melhor omitir o total.
+  const temDuracao = Number.isFinite(duration) && duration > 0;
+
   return (
     <span className="whitespace-nowrap px-1 text-xs tabular-nums text-terra-cream/70">
       {format(currentTime)}
-      {showDuration ? ` / ${format(duration)}` : null}
+      {showDuration && temDuracao ? ` / ${format(duration)}` : null}
     </span>
   );
 }
@@ -299,6 +322,11 @@ export function VideoPlayerMuteButton() {
   );
 }
 
+/**
+ * Escondida no celular: a barra não cabia em 342px e empurrava o botão de
+ * mudo para fora da tela. No iOS o volume é do sistema de qualquer forma —
+ * quem controla por lá é o mudo, que continua visível.
+ */
 export function VideoPlayerVolumeRange() {
   const { volume, muted, setVolume } = useVideoPlayer();
   return (
@@ -310,7 +338,7 @@ export function VideoPlayerVolumeRange() {
       value={muted ? 0 : volume}
       onChange={(e) => setVolume(Number(e.target.value))}
       aria-label="Volume"
-      className="h-1 w-20 cursor-pointer accent-terra-gold"
+      className="hidden h-1 w-20 cursor-pointer accent-terra-gold sm:block"
     />
   );
 }

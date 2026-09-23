@@ -67,9 +67,9 @@ export default function ShowTypes() {
   const headerRef = useReveal();
 
   return (
-    <section className="py-24 md:py-32 bg-terra-cream">
+    <section className="py-16 md:py-32 bg-terra-cream">
       <div className="max-w-6xl mx-auto px-6">
-        <div ref={headerRef} className="reveal text-center mb-16">
+        <div ref={headerRef} className="reveal text-center mb-10 md:mb-16">
           <p className="text-terra-burn tracking-[0.2em] uppercase text-xs mb-4">
             Formatos de show
           </p>
@@ -85,7 +85,7 @@ export default function ShowTypes() {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-3 gap-6 md:gap-8">
           {showTypes.map((show, i) => (
             <ShowCard key={show.name} {...show} index={i} />
           ))}
@@ -115,7 +115,9 @@ function ShowCard({
       <h3 className="font-serif text-terra-dark text-2xl mb-1">{name}</h3>
       <p className="text-terra-burn text-sm tracking-wide mb-4">{tagline}</p>
 
-      <p className="text-terra-dark/65 text-sm leading-relaxed mb-6">
+      {/* /75 e não /65: sobre o card branco, 65% dá 4.23:1 e reprova o AA de
+          texto normal (4.5:1). A 75% sobe para 5.64:1. */}
+      <p className="text-terra-dark/75 text-sm leading-relaxed mb-6">
         {description}
       </p>
 

@@ -7,12 +7,15 @@ export default function About() {
   const ref = useReveal();
 
   return (
-    <section id="sobre" className="py-24 md:py-32 bg-terra-cream">
+    <section id="sobre" className="py-16 md:py-32 bg-terra-cream">
       <div className="max-w-6xl mx-auto px-6">
-        <div ref={ref} className="reveal grid md:grid-cols-2 gap-12 md:gap-20 items-center">
+        <div ref={ref} className="reveal grid md:grid-cols-2 gap-10 md:gap-20 items-center">
           {/* Image column */}
           <div className="relative">
-            <div className="relative aspect-[9/16] bg-terra-dark/5 rounded-sm overflow-hidden">
+            {/* 3/4 no celular: a caixa 9/16 sozinha passava de uma tela inteira.
+                Recortar por max-height cortava o rosto, então o que muda é a
+                proporção da caixa. */}
+            <div className="relative aspect-[3/4] md:aspect-[9/16] bg-terra-dark/5 rounded-sm overflow-hidden">
               <Image
                 src="/images/foto-sobre.webp"
                 alt="Geovani Medeiros sentado com uma jaqueta marrom e camisa verde com um microfone na mão"

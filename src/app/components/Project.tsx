@@ -29,12 +29,14 @@ function ProjectBlock({
   return (
     <div
       ref={ref}
-      className={`reveal ${delayClass} grid md:grid-cols-2 gap-10 md:gap-16 items-center`}
+      className={`reveal ${delayClass} grid md:grid-cols-2 gap-8 md:gap-16 items-center`}
     >
       {/* Image */}
       <div className={reverse ? "md:order-2" : undefined}>
+        {/* max-h no celular: o bloco retrato (1080/1744) sozinho passava de
+            uma tela inteira antes do texto aparecer. */}
         <div
-          className={`relative ${aspect} bg-terra-cream/5 rounded-sm overflow-hidden`}
+          className={`relative ${aspect} max-h-[70svh] md:max-h-none bg-terra-cream/5 rounded-sm overflow-hidden`}
         >
           <Image
             src={image}
@@ -95,9 +97,9 @@ export default function Project() {
   ];
 
   return (
-    <section id="projeto" className="py-24 md:py-32 bg-terra-wine">
+    <section id="projeto" className="py-16 md:py-32 bg-terra-wine">
       <div className="max-w-6xl mx-auto px-6">
-        <div ref={headerRef} className="reveal text-center mb-20">
+        <div ref={headerRef} className="reveal text-center mb-12 md:mb-20">
           <p className="text-terra-gold tracking-[0.2em] uppercase text-xs mb-4">
             O Projeto
           </p>
@@ -107,11 +109,11 @@ export default function Project() {
           </h2>
           <div className="editorial-line editorial-line--gold mx-auto" />
           <p className="text-terra-cream/70 mt-6 max-w-2xl mx-auto leading-relaxed">
-            O registro de um entardecer típico do interior de minas, na bucólica cidade de Tiradentes.O novo audiovisual de Geovani Medeiros.
+            O registro de um entardecer típico do interior de minas, na bucólica <br />cidade de Tiradentes. O novo audiovisual de Geovani Medeiros.
           </p>
         </div>
 
-        <div className="space-y-24 md:space-y-32">
+        <div className="space-y-16 md:space-y-32">
           {blocks.map((block, i) => (
             <ProjectBlock key={block.label} {...block} reverse={i % 2 !== 0} />
           ))}

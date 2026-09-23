@@ -24,7 +24,7 @@ export default function Media() {
   return (
     <section
       id="midia"
-      className="relative overflow-hidden py-24 md:py-32 bg-terra-dark"
+      className="relative overflow-hidden py-16 md:py-32 bg-terra-dark"
     >
       <Image
         src="/images/midias.jpg"
@@ -65,7 +65,7 @@ export default function Media() {
       <div className="absolute inset-0 bg-terra-dark/[0.88]" />
 
       <div className="relative z-10 max-w-6xl mx-auto px-6">
-        <div ref={headerRef} className="reveal text-center mb-16">
+        <div ref={headerRef} className="reveal text-center mb-10 md:mb-16">
           <p className="text-terra-gold tracking-[0.2em] uppercase text-xs mb-4">
             Ouça agora
           </p>
@@ -78,7 +78,7 @@ export default function Media() {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-12 items-center">
+        <div className="grid md:grid-cols-2 gap-10 md:gap-12 items-center">
           {/* Texto */}
           <div ref={textRef} className="reveal reveal-delay-1">
             <h3 className="font-serif text-terra-cream text-2xl md:text-3xl mb-4 leading-snug">

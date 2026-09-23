@@ -9,9 +9,9 @@ export default function Testimonials() {
   const headerRef = useReveal();
 
   return (
-    <section id="depoimentos" className="py-24 md:py-32 bg-terra-cream">
+    <section id="depoimentos" className="py-16 md:py-32 bg-terra-cream">
       <div className="max-w-6xl mx-auto px-6">
-        <div ref={headerRef} className="reveal text-center mb-16">
+        <div ref={headerRef} className="reveal text-center mb-10 md:mb-16">
           <p className="text-terra-burn tracking-[0.2em] uppercase text-xs mb-4">
             Depoimentos
           </p>
@@ -49,7 +49,9 @@ function TestimonialCard({ quote, name, location, context }: Testimonial) {
         <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
       </svg>
 
-      <blockquote className="text-terra-dark/70 leading-relaxed text-sm mb-6 italic whitespace-pre-line">
+      {/* /85 e não /70: a 70% sobre o card claro o corpo do depoimento ficava
+          no limite de AA, e é o texto mais longo da seção. */}
+      <blockquote className="text-terra-dark/85 leading-relaxed text-sm mb-6 italic whitespace-pre-line">
         &ldquo;{quote}&rdquo;
       </blockquote>
 

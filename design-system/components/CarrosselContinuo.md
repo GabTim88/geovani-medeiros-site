@@ -14,7 +14,15 @@ A diferença importa: metade do `scrollWidth` não inclui o gap entre os dois gr
 
 ## Pausa
 
-Pausa no hover do mouse, no foco por teclado e durante o arrasto — retomando 2s depois de soltar. A pausa mora em uma ref, não em estado: alternar estado reiniciaria o loop de animação a cada entrada do ponteiro.
+Pausa no repouso do mouse, no foco por teclado e durante o toque ou arrasto — retomando 2s depois de soltar. No celular, onde hover não existe, quem pausa é o toque (`pointerdown`).
+
+A pausa mora em uma ref, não em estado: alternar estado reiniciaria o loop de animação a cada entrada do ponteiro.
+
+## A armadilha do sub-pixel
+
+O avanço por quadro é fração de pixel: a 28px/s em 60fps dá 0,46px. `scrollLeft` arredonda, então **somar sobre o valor lido de volta do elemento descarta o resto a cada quadro** e a faixa fica parada. A 32px/s (0,53px) ela passa raspando do limiar e anda — o que fazia o bug parecer exclusivo de uma das páginas.
+
+A posição real mora em uma ref de ponto flutuante; o elemento só recebe o valor. E como a nossa própria escrita dispara `onScroll`, o handler compara o `scrollLeft` com o último valor escrito e ignora a diferença abaixo de 1,5px — sem isso o arredondado voltaria para a ref e o problema reapareceria.
 
 ## Acessibilidade
 

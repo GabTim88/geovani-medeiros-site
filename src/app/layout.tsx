@@ -99,7 +99,7 @@ export default function RootLayout({
       <body className="antialiased">
         <noscript>
           {/* Sem JS o scroll reveal nunca dispara; revela tudo de uma vez. */}
-          <style>{`.reveal,.hero-phase-logo,.hero-phase-text{opacity:1!important;transform:none!important}.hero-track{height:auto!important;min-height:100svh}.hero-stage{position:static!important;height:auto!important;min-height:100svh;padding:8rem 0}.hero-layer{position:static!important;gap:2.5rem}.hero-phase-text{position:static!important}`}</style>
+          <style>{`.reveal,.hero-phase-logo,.hero-phase-text,.hero-cta{opacity:1!important;visibility:visible!important;transform:none!important}.hero-track{height:auto!important;min-height:100svh}.hero-stage{position:static!important;height:auto!important;min-height:100svh;padding:8rem 0}.hero-layer{position:static!important;gap:2.5rem}.hero-phase-text{position:static!important}`}</style>
         </noscript>
         <JsonLd />
         <a

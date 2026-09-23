@@ -6,7 +6,8 @@ import { useCallback, useEffect, useRef, type ReactNode } from "react";
  * Faixa horizontal com rolagem automática contínua e loop infinito real (direita -> esquerda).
  *
  * - Auto-scroll via requestAnimationFrame sobre `scrollLeft`, mantendo o arrasto nativo por toque.
- * - Pausa no hover (mouse), no foco por teclado e enquanto a pessoa arrasta.
+ * - Pausa no repouso do mouse, no foco por teclado e enquanto a pessoa toca/arrasta,
+ *   retomando depois de soltar.
  * - Loop infinito garantido: a lista é multiplicada em 4 grupos para que o scrollWidth total
  *   seja sempre muito maior do que a largura da tela (clientWidth), evitando travamentos
  *   na borda física de rolagem do elemento em telas grandes ou após o último item.
@@ -18,7 +19,7 @@ export default function Carousel({
   ariaLabel,
   /** Pixels por segundo. */
   speed = 32,
-  /** Espera antes de retomar depois do arrasto. */
+  /** Espera antes de retomar depois do toque ou arrasto. */
   resumeDelay = 2000,
 }: {
   children: ReactNode;
@@ -33,8 +34,19 @@ export default function Carousel({
   // Refs e não state: pausar não deve reiniciar o loop de animação.
   const pausedRef = useRef(false);
   const loopRef = useRef(0);
-  const posRef = useRef(0);
   const resumeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  /**
+   * Posição em ponto flutuante.
+   *
+   * O avanço por quadro é fração de pixel — a 28px/s em 60fps dá 0,46px. Como
+   * `scrollLeft` arredonda, somar sobre o valor lido de volta do elemento
+   * descartava o resto a cada quadro e a faixa ficava parada. A posição real
+   * mora aqui; o elemento só recebe o valor.
+   */
+  const posRef = useRef(0);
+  /** Último valor escrito por nós, para separar nosso scroll do da pessoa. */
+  const escritoRef = useRef(0);
 
   const measure = useCallback(() => {
     const a = groupARef.current;
@@ -58,6 +70,8 @@ export default function Carousel({
       return () => ro.disconnect();
     }
 
+    posRef.current = el.scrollLeft;
+
     let raf = 0;
     let last = performance.now();
 
@@ -66,16 +80,13 @@ export default function Carousel({
       last = now;
 
       const loop = loopRef.current;
-      if (!pausedRef.current && loop > 0 && el) {
-        let currentPos = el.scrollLeft;
-        let nextPos = currentPos + (speed * dt) / 1000;
+      if (!pausedRef.current && loop > 0) {
+        let next = posRef.current + (speed * dt) / 1000;
+        if (next >= loop * 2) next -= loop;
 
-        if (nextPos >= loop) {
-          nextPos -= loop;
-        }
-
-        el.scrollLeft = nextPos;
-        posRef.current = nextPos;
+        posRef.current = next;
+        el.scrollLeft = next;
+        escritoRef.current = el.scrollLeft;
       }
 
       raf = requestAnimationFrame(step);
@@ -88,11 +99,15 @@ export default function Carousel({
     };
   }, [speed, measure]);
 
-  // Normalização do scroll durante o arrasto ou rolagem manual
+  // Normalização do scroll durante o arrasto ou rolagem manual.
   const onScroll = () => {
     const el = scrollerRef.current;
     const loop = loopRef.current;
     if (!el || loop <= 0) return;
+
+    // Evento disparado pela nossa própria escrita: não mexer em posRef, senão
+    // o valor fracionário volta a ser o arredondado e a faixa empaca.
+    if (Math.abs(el.scrollLeft - escritoRef.current) < 1.5) return;
 
     if (el.scrollLeft <= 0) {
       el.scrollLeft += loop;
@@ -100,6 +115,7 @@ export default function Carousel({
       el.scrollLeft -= loop;
     }
     posRef.current = el.scrollLeft;
+    escritoRef.current = el.scrollLeft;
   };
 
   const pause = () => {
