@@ -187,7 +187,7 @@ export default function Hero() {
               />
             </h1>
             <span className="text-terra-gold tracking-[0.35em] uppercase text-[0.65rem] md:text-xs">
-              Voz, violão e gaita &bull; Barbacena/MG
+              Voz, violões, gaitas e banda &bull; Barbacena/MG
             </span>
           </div>
 
@@ -195,9 +195,8 @@ export default function Hero() {
           <div ref={textRef} className="hero-phase-text">
             <div className="editorial-line mx-auto mb-6" />
             <p className="font-serif text-terra-cream text-xl md:text-3xl max-w-3xl mx-auto leading-snug">
-              Música brasileira ao vivo que transforma casamentos, eventos e
-              festivais em{" "}
-              <span className="text-terra-gold italic">Minas Gerais</span>.
+              Música brasileira, da melhor qualidade, ao vivo, que transforma todos os eventos em{" "}
+              <span className="text-terra-gold italic">Minas Gerais e no Brasil</span>.
             </p>
             <p className="text-terra-cream/70 text-sm md:text-base mt-4">
               Desde 2014, no palco &mdash; e junto do público.

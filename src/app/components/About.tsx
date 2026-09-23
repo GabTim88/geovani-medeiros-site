@@ -14,8 +14,8 @@ export default function About() {
           <div className="relative">
             <div className="relative aspect-[9/16] bg-terra-dark/5 rounded-sm overflow-hidden">
               <Image
-                src="/images/sobre.webp"
-                alt="Geovani Medeiros sentado em uma banqueta, de jaqueta de couro, segurando seu violão em retrato de estúdio"
+                src="/images/foto-sobre.webp"
+                alt="Geovani Medeiros sentado com uma jaqueta marrom e camisa verde com um microfone na mão"
                 fill
                 sizes="(max-width: 768px) 100vw, (max-width: 1152px) 45vw, 512px"
                 className="object-cover"
@@ -39,7 +39,7 @@ export default function About() {
             <div className="space-y-5 text-terra-dark/75 leading-relaxed">
               <p>
                 Sozinho ou com a formação musical que você preferir, Geovani Medeiros contrói a apresentação artística 
-                com corpo alma e coração entregues para a música. Com carisma e leitura coerente do publico, 
+                com corpo, alma e coração entregues para a música. Com carisma e leitura coerente do publico, 
                 sabe bem como trabalhar a dinâmica de qualquer evento.
               </p>
               <p>

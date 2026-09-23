@@ -26,11 +26,11 @@ export default function CTABanner() {
           Seu evento merece{" "}
           <span className="text-terra-gold italic">música de verdade</span>
         </h2>
-        <p className="text-terra-cream/90 text-lg mb-10 max-w-2xl mx-auto">
-          Casamento, evento corporativo, bar ou festival: Geovani monta o
-          repertório junto com você e ajusta a formação ao tamanho do espaço.
-          Conte o que você imaginou &mdash; ele cuida do resto.
-        </p>
+        <p className="text-terra-cream/90 text-lg mb-10 max-w-2xl mx-auto leading-relaxed">
+  Seja um show intimista ou uma grande apresentação com banda e estrutura completa de som e luz, Geovani Medeiros entrega a atmosfera perfeita para o seu evento.
+  Diga o que você imaginou e ele cuidará do resto.
+</p>
+
         <Link
           href="/contratacao"
           className="inline-block px-10 py-4 bg-terra-cream text-terra-burn text-sm tracking-widest uppercase hover:bg-terra-gold hover:text-terra-dark transition-all duration-300 rounded-sm font-medium"

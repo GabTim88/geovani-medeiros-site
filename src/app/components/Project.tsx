@@ -68,7 +68,7 @@ export default function Project() {
     {
       label: "A Origem",
       title: "Da simplicidade nasce a arte",
-      text: "Nascido e criado em Barbacena, no coração de Minas Gerais, Geovani encontrou na música a sua forma de tocar as pessoas. Desde 2014 percorre palcos e festivais do estado com arranjos autorais de gaita e violão, na autenticidade de quem vive cada nota.",
+      text: "Nascido em Barbacena, mas com fortes raízes em Ressaquinha, no coração de Minas Gerais, Geovani  guardou seu diploma de engenheiro agrônomo  para se aventurar no mundo da arte, e com isso utilizar da música para tocar o coração das pessoas. Desde 2014 percorre por diversos palcos, festivais, bares, casamentos do estado, utilizando arranjos muito autênticos com suas gaitas e violões.",
       image: "/images/projeto-origem.webp",
       alt: "Geovani Medeiros estendendo um microfone vintage prateado em direção à câmera, em retrato de estúdio",
       aspect: "aspect-[3/2]",
@@ -107,8 +107,7 @@ export default function Project() {
           </h2>
           <div className="editorial-line editorial-line--gold mx-auto" />
           <p className="text-terra-cream/70 mt-6 max-w-2xl mx-auto leading-relaxed">
-            O registro de uma tarde só, ao ar livre, no alto de Tiradentes.
-            <br />O novo audiovisual de Geovani Medeiros.
+            O registro de um entardecer típico do interior de minas, na bucólica cidade de Tiradentes.O novo audiovisual de Geovani Medeiros.
           </p>
         </div>
 

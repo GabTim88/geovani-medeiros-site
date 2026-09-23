@@ -62,8 +62,7 @@ export default function Gallery() {
           </h2>
           <div className="editorial-line mx-auto" />
           <p className="text-terra-dark/75 mt-6 max-w-xl mx-auto leading-relaxed">
-            Estúdio, estrada e o entardecer em Tiradentes &mdash; registros dos
-            bastidores e das apresentações.
+            Estúdio, estrada, apresentações diversas e o entardecer em Tiradentes. <br />Registros dos bastidores e das apresentações. 
           </p>
         </div>
 

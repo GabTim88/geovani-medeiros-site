@@ -14,9 +14,7 @@ export default function Footer() {
               Geovani Medeiros
             </Link>
             <p className="text-terra-cream/70 text-sm mt-3 leading-relaxed">
-              Cantor, violonista e gaitista de Barbacena/MG. Música brasileira
-              ao vivo para casamentos, eventos corporativos e festivais em Minas
-              Gerais desde {site.activeSince}.
+              Cantor, violonista e gaitista de Barbacena MG. Musica brasileira ao vivo para eventos diversos, como festivais, corporativos, bares, pubs, palcos em Minas Gerais desde {site.activeSince}.
             </p>
           </div>
 

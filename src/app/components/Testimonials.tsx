@@ -16,11 +16,11 @@ export default function Testimonials() {
             Depoimentos
           </p>
           <h2 className="font-serif text-terra-dark text-3xl md:text-5xl mb-6">
-            Quem contratou, conta por quê
+            Quem contratou, conta porquê
           </h2>
           <div className="editorial-line mx-auto" />
           <p className="text-terra-dark/75 mt-6 max-w-xl mx-auto leading-relaxed">
-            Noivos, produtores e donos de casa de show &mdash; o que eles dizem
+            Noivos, produtores e donos de casa de show. <br />O que eles dizem
             depois da última música.
           </p>
         </div>
