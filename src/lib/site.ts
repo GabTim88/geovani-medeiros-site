@@ -34,7 +34,7 @@ export const site = {
   whatsapp: "553284588496",
   social: {
     instagram: "https://www.instagram.com/geovanimedeirosoficial",
-    youtube: "https://youtube.com/@geovanimedeirosoficial",
+    youtube: "https://youtube.com/@geovanimedeirosoficial?si=92d9KVQ8ng77xdCN",
     spotify: "https://open.spotify.com/user/21tii3nlto6nvbamkdxfjiu5i",
   },
   /**
@@ -43,6 +43,9 @@ export const site = {
    * publicamente" ligado nas configurações de compartilhamento.
    */
   calendarId: "digioassis@gmail.com",
+  /** Link completo da agenda (mesmo calendário do embed). */
+  calendarUrl:
+    "https://calendar.google.com/calendar/u/0?cid=ZGlnaW9hc3Npc0BnbWFpbC5jb20",
   /** Cidades atendidas — alimenta o areaServed do JSON-LD (SEO local). */
   areaServed: [
     "Barbacena",

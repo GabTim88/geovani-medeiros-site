@@ -1,6 +1,6 @@
 "use client";
 
-import Image from "next/image";
+import Image, { getImageProps } from "next/image";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { useVideoBackgroundEnabled } from "@/lib/useVideoBackground";
@@ -26,6 +26,9 @@ const HERO_VIDEO: { mp4: string | null; webm?: string } = {
 
 /** Primeiro quadro / fallback do hero. */
 const HERO_POSTER = "/images/hero.webp";
+
+/** Fundo do hero em telas < 768px. */
+const HERO_POSTER_MOBILE = "/images/09.webp";
 
 /**
  * Fração da altura da viewport em que a fase do logotipo dá lugar ao texto.
@@ -94,6 +97,22 @@ export default function Hero() {
     };
   }, []);
 
+  const common = {
+    alt: "",
+    "aria-hidden": true,
+    fill: true,
+    priority: true,
+    sizes: "100vw",
+  } as const;
+  const { props: desktopProps } = getImageProps({
+    ...common,
+    src: HERO_POSTER,
+  });
+  const { props: mobileProps } = getImageProps({
+    ...common,
+    src: HERO_POSTER_MOBILE,
+  });
+
   return (
     <section id="inicio" className="hero-track">
       <div className="hero-stage bg-terra-dark">
@@ -103,17 +122,16 @@ export default function Hero() {
             Primeiro quadro: é ele o LCP. Sai de cena quando o vídeo assume —
             as duas camadas visíveis ao mesmo tempo somavam um composto turvo.
           */}
-          <Image
-            src={HERO_POSTER}
-            alt=""
-            aria-hidden="true"
-            fill
-            priority
-            sizes="100vw"
-            className={`object-cover transition-opacity duration-1000 ${
-              videoReady ? "opacity-0" : "opacity-60"
-            }`}
-          />
+          <picture>
+            <source media="(min-width: 768px)" srcSet={desktopProps.srcSet} />
+            {/* eslint-disable-next-line @next/next/no-img-element, jsx-a11y/alt-text */}
+            <img
+              {...mobileProps}
+              className={`object-cover transition-opacity duration-1000 ${
+                videoReady ? "opacity-0" : "opacity-60"
+              }`}
+            />
+          </picture>
 
           {showVideo && HERO_VIDEO.mp4 ? (
             <video
