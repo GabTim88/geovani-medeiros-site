@@ -100,17 +100,19 @@ export default function Media() {
 
           {/* Spotify */}
           <div ref={spotifyRef} className="reveal reveal-delay-2">
-            <div className="bg-terra-cream/5 rounded-lg overflow-hidden">
-              {/* TODO(cliente): confirmar o ID. O mesmo valor aparece como
-                  artist ID aqui e como user ID no rodapé — um dos dois está errado. */}
+            {/* Altura fixa de 352px reservada no wrapper: evita layout shift
+                enquanto o iframe lazy carrega e mantém o player no formato
+                "capa grande" (melhor toque no mobile). */}
+            <div className="bg-terra-cream/5 rounded-xl overflow-hidden h-[352px]">
               <iframe
-                src="https://open.spotify.com/embed/artist/21tii3nlto6nvbamkdxfjiu5i?utm_source=generator&theme=0"
-                title="Player do Spotify com as músicas de Geovani Medeiros"
+                src="https://open.spotify.com/embed/album/2wIFuQTB9t5U5YIimMVR5C?utm_source=generator&si=afa7d3c33bd84073"
+                title="Player do Spotify com o álbum Um Entardecer em Tiradentes"
                 width="100%"
                 height="352"
                 allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                allowFullScreen
                 loading="lazy"
-                className="rounded-lg"
+                className="block w-full h-full rounded-xl border-0"
               />
             </div>
 
